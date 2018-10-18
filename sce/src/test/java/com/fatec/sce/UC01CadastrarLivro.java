@@ -11,37 +11,39 @@ public class UC01CadastrarLivro {
 	public void CT01CadastrarLivroComDadosValidos() {
 		try {
 			// cenario
-			Livro umLivro;
-			// acao
-			umLivro = ObtemLivro.comDadosValidos();
+			 Livro umLivro = new Livro();
+			 // acao
+			 umLivro = ObtemLivro.comDadosValidos();
 		} catch (RuntimeException e) {
 			// verificacao
 			fail("Não deve falhar");
 		}
 	}
-
+/**
+ * Objetivo: verificar o comportamento do sistema no cadastro de livro com dados válidos.
+ */
 	@Test
 	public void CT02CadastrarLivroComISBN_em_branco() {
 		try {
 			// cenario
-			Livro livro;
-			// acao
-			livro = ObtemLivro.comISBNInvalido_branco();
-			fail("Deveria lançar uma exceção");
+			 Livro umLivro = new Livro();
+			 // acao
+			 umLivro = ObtemLivro.comISBNInvalido_branco();
 		} catch (RuntimeException e) {
 			// verificacao
 			assertEquals("ISBN inválido", e.getMessage());
 		}
 	}
-
+/**
+ * Objetivo: verificar o comportamento do sistema no cadastro de livro com ISBN branco.
+ */
 	@Test
 	public void CT03CadastrarLivroComISBN_nulo() {
 		try {
 			// cenario
-			Livro livro;
-			// acao
-			livro = ObtemLivro.comISBNInvalido_nulo();
-			fail("Deveria lançar uma exceção");
+			 Livro umLivro = new Livro();
+			 // acao
+			 umLivro = ObtemLivro.comISBNInvalido_nulo();
 		} catch (RuntimeException e) {
 			// verificacao
 			assertEquals("ISBN inválido", e.getMessage());
@@ -52,11 +54,10 @@ public class UC01CadastrarLivro {
 	public void CT04CadastrarLivroComTitulo_em_branco() {
 		// cenario
 		Livro livro = new Livro();
-		livro.setIsbn("121212");
-		livro.setAutor("Pressman");
+		
 		try {
 			// acao
-			livro.setTitulo("");
+			livro = ObtemLivro.comTituloInvalido_branco();
 			fail("Deveria lançar uma exceção");
 		} catch (RuntimeException e) {
 			// verificacao
@@ -68,11 +69,9 @@ public class UC01CadastrarLivro {
 	public void CT05CadastrarLivroComTitulo_nulo() {
 		// cenario
 		Livro livro = new Livro();
-		livro.setIsbn("121212");
-		livro.setAutor("Pressman");
 		try {
 			// acao
-			livro.setTitulo(null);
+			livro = ObtemLivro.comTituloInvalido_nulo();
 			fail("Deveria lançar uma exceção");
 		} catch (RuntimeException e) {
 			// verificacao
@@ -84,11 +83,9 @@ public class UC01CadastrarLivro {
 	public void CT06CadastrarLivroComAutor_em_branco() {
 		// cenario
 		Livro livro = new Livro();
-		livro.setIsbn("121212");
-		livro.setTitulo("Engenharia de Software");
 		try {
 			// acao
-			livro.setAutor("");
+			livro = ObtemLivro.comAutorInvalido_branco();
 			fail("Deveria lançar uma exceção");
 		} catch (RuntimeException e) {
 			// verificacao
@@ -97,14 +94,12 @@ public class UC01CadastrarLivro {
 	}
 
 	@Test
-	public void CT07CadastrarLivroComAutor_invalido() {
+	public void CT07CadastrarLivroComAutor_nulo() {
 		// cenario
 		Livro livro = new Livro();
-		livro.setIsbn("121212");
-		livro.setTitulo("Engenharia de Software");
 		try {
 			// acao
-			livro.setAutor(null);
+			livro = ObtemLivro.comAutorInvalido_nulo();
 			fail("Deveria lançar uma exceção");
 		} catch (RuntimeException e) {
 			// verificacao
