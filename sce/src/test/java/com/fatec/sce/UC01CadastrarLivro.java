@@ -7,6 +7,9 @@ import org.junit.Test;
 import com.fatec.sce.model.Livro;
 
 public class UC01CadastrarLivro {
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de livro com dados válidos.
+* */
 	@Test
 	public void CT01CadastrarLivroComDadosValidos() {
 		try {
@@ -20,7 +23,7 @@ public class UC01CadastrarLivro {
 		}
 	}
 /**
- * Objetivo: verificar o comportamento do sistema no cadastro de livro com dados válidos.
+ * Objetivo: verificar o comportamento do sistema no cadastro de livro com ISBN em branco.
  */
 	@Test
 	public void CT02CadastrarLivroComISBN_em_branco() {
@@ -35,8 +38,8 @@ public class UC01CadastrarLivro {
 		}
 	}
 /**
- * Objetivo: verificar o comportamento do sistema no cadastro de livro com ISBN branco.
- */
+* Objetivo: verificar o comportamento do sistema no cadastro de livro com ISBN nulo.
+*/
 	@Test
 	public void CT03CadastrarLivroComISBN_nulo() {
 		try {
@@ -49,7 +52,9 @@ public class UC01CadastrarLivro {
 			assertEquals("ISBN inválido", e.getMessage());
 		}
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de livro com Titulo em branco.
+*/
 	@Test
 	public void CT04CadastrarLivroComTitulo_em_branco() {
 		// cenario
@@ -64,7 +69,9 @@ public class UC01CadastrarLivro {
 			assertEquals("Titulo inválido", e.getMessage());
 		}
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de livro com Titulo nulo.
+*/
 	@Test
 	public void CT05CadastrarLivroComTitulo_nulo() {
 		// cenario
@@ -78,7 +85,9 @@ public class UC01CadastrarLivro {
 			assertEquals("Titulo inválido", e.getMessage());
 		}
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de livro com Autor em branco.
+*/
 	@Test
 	public void CT06CadastrarLivroComAutor_em_branco() {
 		// cenario
@@ -92,7 +101,9 @@ public class UC01CadastrarLivro {
 			assertEquals("Autor inválido", e.getMessage());
 		}
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de livro com Autor nulo.
+*/
 	@Test
 	public void CT07CadastrarLivroComAutor_nulo() {
 		// cenario
@@ -106,7 +117,9 @@ public class UC01CadastrarLivro {
 			assertEquals("Autor inválido", e.getMessage());
 		}
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de um livro com sucesso para Titulo (getTitulo).
+*/
 	@Test
 	public void CT08CadastrarLivro_com_sucesso_Titulo() {
 		// cenario
@@ -115,7 +128,9 @@ public class UC01CadastrarLivro {
 		livro.setAutor("Pressman");
 		assertEquals("Engenharia de Software", livro.getTitulo());
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de um livro com sucesso para ISBN (getIsbn).
+*/
 	@Test
 	public void CT09CadastrarLivro_com_sucesso_ISBN() {
 		// cenario
@@ -124,7 +139,9 @@ public class UC01CadastrarLivro {
 		livro.setAutor("Pressman");
 		assertEquals("121212", livro.getIsbn());
 	}
-
+/**
+* Objetivo: verificar o comportamento do sistema no cadastro de um livro com sucesso para Autor (getAutor).
+*/
 	@Test
 	public void CT10CadastrarLivro_com_sucesso_Autor() {
 		// cenario
