@@ -201,8 +201,8 @@ public class UC01CadastrarLivro {
 			livroDAO.adiciona(umLivro);
 			// verificacao
 		} catch (RuntimeException e) {
+			livroDAO.exclui(umLivro.getIsbn());
 			assertEquals("com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '121213' for key 'PRIMARY'", e.getMessage());
 		}
-		livroDAO.exclui(umLivro.getIsbn());
 	}
 }
