@@ -5,7 +5,7 @@ import com.fatec.sce.model.Livro;
 public class ObtemLivro {
 	public static Livro comDadosValidos() {
 		Livro livro = new Livro();
-		livro.setIsbn("121212");
+		livro.setIsbn("121213");
 		livro.setTitulo("Engenharia de Software");
 		livro.setAutor("Pressman");
 		return livro;
