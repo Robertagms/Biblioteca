@@ -10,6 +10,8 @@ import com.fatec.sce.model.ILivroDAO;
 
 import com.fatec.sce.model.Livro;
 
+import com.fatec.sce.model.LivroDAO;
+
 public class UC01CadastrarLivro {
 	/**
 	 * Objetivo: verificar o comportamento do sistema no cadastro de livro com dados
@@ -184,8 +186,23 @@ public class UC01CadastrarLivro {
 		int codigoRetorno = livroDAO.adiciona(umLivro);
 		// verificacao
 		assertEquals(1, codigoRetorno);
-		livroDAO.exclui(umLivro.getIsbn()); //Volto o ambiente para o estado anterior
-	} 
-	
-	
+		livroDAO.exclui(umLivro.getIsbn()); // Volto o ambiente para o estado anterior
+	}
+
+	@Test
+	public void CT12CadastrarLivroComISBNCadastrado() {
+		// cenario
+		Livro umLivro = ObtemLivro.comDadosValidos();
+		DAOFactory mySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+		ILivroDAO livroDAO = mySQLFactory.getLivroDAO();
+		try {
+			// acao
+			livroDAO.adiciona(umLivro);
+			livroDAO.adiciona(umLivro);
+			// verificacao
+		} catch (RuntimeException e) {
+			assertEquals("com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '121213' for key 'PRIMARY'", e.getMessage());
+		}
+		livroDAO.exclui(umLivro.getIsbn());
+	}
 }
