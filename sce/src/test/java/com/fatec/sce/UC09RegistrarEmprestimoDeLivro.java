@@ -146,7 +146,7 @@ public class UC09RegistrarEmprestimoDeLivro {
 	}
 	
 	@Test
-	public void CT11RegistraEmprestimoComDataInvalida() {
+	public void CT11RegistraEmprestimoValidaData() {
 		try {
 			// cenario
 			String dataInvalida = "00/00/00";
