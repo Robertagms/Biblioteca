@@ -144,7 +144,7 @@ public class UC09RegistrarEmprestimoDeLivro {
 			assertEquals("Data invalida.", e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void CT11RegistraEmprestimoValidaData() {
 		try {
@@ -159,4 +159,70 @@ public class UC09RegistrarEmprestimoDeLivro {
 		}
 	}
 
+	/**
+	 * Objetivo - verificar o comportamento do metodo ehDomigo() para uma data com
+	 * formato valido dia invalido (domingo).
+	 */
+	@Test
+	public void CT12se_data_devolucao_for_domingo_retorna_true() {
+		// cenario
+		String data = "2018/09/02"; // domingo
+		// acao
+		Emprestimo umEmprestimo = new Emprestimo();
+		// verificacao
+		assertTrue(umEmprestimo.ehDomingo(data));
+	}
+	
+	@Test
+	public void CT13se_data_devolucao_for_seg_a_sab_valida() {
+		// cenario
+		String data = "2018/09/03"; // segunda
+		// acao
+		Emprestimo umEmprestimo = new Emprestimo();
+		// verificacao
+		assertFalse(umEmprestimo.ehDomingo(data));
+	}
+	
+	@Test
+	public void CT14se_data_devolucao_formato_invalido() {
+		// cenario
+		String data = "2018/09"; // segunda
+		// acao
+		Emprestimo umEmprestimo = new Emprestimo();
+		// verificacao
+		assertFalse(umEmprestimo.ehDomingo(data));
+	}
+	
+	@Test
+	public void CT15_quando_entrega_atrasado_quant_dias_negativo() {
+		// cenario
+		Emprestimo umEmprestimo = ObtemEmprestimo.comDataDeDevolucaoVencida();
+		ServicoEmprestimo servico = new ServicoEmprestimo();
+		// acao
+		int quantDias = servico.devolucao(umEmprestimo);
+		// verificacao
+		assertTrue(quantDias < 0); // Quant de dias entre a data de emprestimo e a de devolucao
+	}
+
+	@Test
+	public void CT16_quando_entrega_no_mesmo_dia() {
+		// cenario
+		Emprestimo umEmprestimo = ObtemEmprestimo.comDataDeDevolucaoIgualEmprestimo();
+		ServicoEmprestimo servico = new ServicoEmprestimo();
+		// acao
+		int quantDias = servico.devolucao(umEmprestimo);
+		// verificacao
+		assertTrue(quantDias == 0); // Devolução no mesmo dia
+	}
+	
+	@Test
+	public void CT17_quando_entrega_um_dia_depois() {
+		// cenario
+		Emprestimo umEmprestimo = ObtemEmprestimo.comDataDeDevolucaoUmDiaDepois();
+		ServicoEmprestimo servico = new ServicoEmprestimo();
+		// acao
+		int quantDias = servico.devolucao(umEmprestimo);
+		// verificacao
+		assertTrue(quantDias == 0); // Devolução no dia seguinte - faz o between, poderia usar o assertTrue == 1 e plusDays(2)
+	}
 }
